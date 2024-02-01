@@ -50,17 +50,6 @@ namespace Movies.Api.Controllers
             return Ok(_mapper.MovieToMovieResponse(entity));
         }
 
-        /// <summary>Gets a movie by its identifier.</summary>
-        /// <param name="title">Movie identifier.</param>
-        /// <returns>A movie.</returns>
-        [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<MovieResponse>> GetMovieActors(string title)
-        {
-            var entity = await _repository.GetMovieActors(title);
-            return Ok(_mapper.MovieToMovieResponse(entity));
-        }
 
         /// <summary>Updates a movie.</summary>
         /// <param name="id">Movie identifier.</param>
