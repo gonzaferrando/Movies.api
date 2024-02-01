@@ -8,6 +8,7 @@ namespace Movies.Api.Data
         {
             var movieId1 = Guid.NewGuid();
             var movieId2 = Guid.NewGuid();
+            var movieId3 = Guid.NewGuid();
 
             var movies = new List<Movie>()
             {
@@ -25,7 +26,15 @@ namespace Movies.Api.Data
                     Title = "The Mask",
                     Genre = (int)MovieGenres.Comedy,
                     Description = "This is the description for The Mask movie.",
-                    ReleaseDate = new DateTime(1995, 1, 1),
+                    ReleaseDate = new DateTime(1995, 2, 2),
+                },
+                new()
+                {
+                    Id = movieId3,
+                    Title = "Titanic",
+                    Genre = (int)MovieGenres.Drama,
+                    Description = "This is the description for Titanic movie.",
+                    ReleaseDate = new DateTime(1996, 3, 3),
                 }
             };
 
@@ -35,12 +44,16 @@ namespace Movies.Api.Data
             var actorId2 = Guid.NewGuid();
             var actorId3 = Guid.NewGuid();
             var actorId4 = Guid.NewGuid();
+            var actorId5 = Guid.NewGuid();
+            var actorId6 = Guid.NewGuid();
             var actors = new List<Actor>()
             {
                 new() { Id = actorId1, FirstName = "Leonardo", LastName = "DiCaprio"},
                 new() { Id = actorId2, FirstName = "Kate", LastName = "Winslet"},
                 new() { Id = actorId3, FirstName = "Keanu", LastName = "Reeves"},
                 new() { Id = actorId4, FirstName = "Carrie-Anne", LastName = "Moss"},
+                new() { Id = actorId5, FirstName = "Jim", LastName = "Carrey"},
+                new() { Id = actorId6, FirstName = "Cameron", LastName = "Diaz"},
             };
 
             context.Actors.AddRange(actors);
