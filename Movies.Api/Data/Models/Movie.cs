@@ -10,13 +10,12 @@ namespace Movies.Api.Data.Models
         public int Genre { get; set; }
         public DateTime ReleaseDate { get; set; }
 
-        public virtual ICollection<MovieActor> MovieActor { get; set; }
-
+        public virtual ICollection<Actor> Actors { get; set; }
         public virtual ICollection<MovieRating> MovieRating { get; set; }
 
         public Movie()
         {
-            MovieActor = new HashSet<MovieActor>();
+            Actors = new HashSet<Actor>();
             MovieRating = new HashSet<MovieRating>();
         }
     }

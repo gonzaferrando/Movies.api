@@ -23,6 +23,10 @@ namespace Movies.Api.Data.Configurations
 
             builder.Property(s => s.ReleaseDate)
                 .IsRequired();
+
+            builder.HasMany(d => d.Actors)
+                .WithMany(p => p.Movies)
+                .UsingEntity<MovieActor>();
         }
     }
 }

@@ -8,11 +8,11 @@ namespace Movies.Api.Data.Models
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
 
-        public virtual ICollection<MovieActor> MovieActor { get; set; }
+        public virtual ICollection<Movie> Movies { get; set; }
 
         public Actor()
         {
-            MovieActor = new HashSet<MovieActor>();
+            Movies = new HashSet<Movie>();
         }
 
     }

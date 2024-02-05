@@ -18,19 +18,12 @@ namespace Movies.Api.Controllers
         }
 
         ///<summary>Gets a list of existing movies.</summary>
-        /// <param name="title">Optional. Part of the movie title for filtering existing movies.</param>
         /// <returns>List of movies found.</returns>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<MovieResponse>>> Get(string? title)
+        public async Task<ActionResult<IEnumerable<MovieResponse>>> Get()
         {
-            // IMPORTANT!, this can be solved by using Composite filters.
-            var results = new List<MovieResponse>();
-            if (string.IsNullOrWhiteSpace(title))
-            {
-                return Ok(_mapper.MoviesToMovieResponseList(await _repository.GetAllAsync()));
-            }
-            return Ok(_mapper.MoviesToMovieResponseList(await _repository.FindByAsync(m => m.Title.ToUpperInvariant().Contains(title.Trim().ToUpperInvariant()))));
+            return Ok(_mapper.MoviesToMovieResponseList(await _repository.GetAllAsync()));
         }
 
         /// <summary>Gets a movie by its identifier.</summary>
@@ -48,6 +41,19 @@ namespace Movies.Api.Controllers
             }
 
             return Ok(_mapper.MovieToMovieResponse(entity));
+        }
+
+        /// <summary>Search all movies that matches with given parameters.</summary>
+        /// <param name="title">Exact movie title.</param>
+        /// <returns>List of movies found.</returns>
+        [HttpGet("search")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<SearchMovieResponse[]>> Search(string? title)
+        {
+            // IMPORTANT!, this can be solved by using Composite filters.
+            var entities = await _repository.Search(title);
+            return Ok(entities);
         }
 
 

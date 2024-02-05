@@ -57,6 +57,18 @@ namespace Movies.Api.Data
             };
 
             context.Actors.AddRange(actors);
+
+            var movieActors = new List<MovieActor>()
+            {
+                new() { ActorId = actorId1, MovieId = movieId3 },
+                new() { ActorId = actorId2, MovieId = movieId3 },
+                new() { ActorId = actorId3, MovieId = movieId1 },
+                new() { ActorId = actorId4, MovieId = movieId1 },
+                new() { ActorId = actorId5, MovieId = movieId2 },
+                new() { ActorId = actorId6, MovieId = movieId2 }
+            };
+
+            context.MovieActors.AddRange(movieActors);
             context.SaveChanges();
 
 
